@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+	<meta charset="utf-8" />
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="todo.js"></script>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="todo.css">
+	<title>TodoList</title>
+</head>
+<body>
+	<div ng-controller="TodoListController as vm">
+		<h2>Total todos: {{vm.todos.length}}</h2>
+		<span>{{vm.remaining()}} of {{vm.todos.length}} remaining</span>
+		[ <a href="" ng-click="vm.archive()">archive</a> ]
+		<ul class="unstyled">
+			<li ng-repeat="todo in vm.todos">
+				<label class="checkbox">
+					<input type="checkbox" ng-model="todo.done" />
+					<span class="done-{{todo.done}}">{{todo.text}}</span>
+				</label>
+			</li>
+		</ul>
+		<form ng-submit="vm.addTodo()">
+			<input type="text" ng-model="vm.todoText" size="30" placeholder="add new todo here" />
+			<input class="btn-primary" type="submit" value="add" />
+		</form>
+	</div>
+</body>
+</html>
